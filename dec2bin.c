@@ -1,30 +1,21 @@
 /* dec2bin.c
- * Source: http://web.math.princeton.edu/math_alive/1/Lab1/Conversion.html
- * 		   https://www.cs.cornell.edu/~tomf/notes/cps104/twoscomp.html
+ * Info: http://web.math.princeton.edu/math_alive/1/Lab1/Conversion.html
+ * 		 https://www.cs.cornell.edu/~tomf/notes/cps104/twoscomp.html
  * Created: Nov, 2017
  * Author: Viktor Stoev
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
+#include "csamples.h"
 
 #define ZERO 	'0'
 #define ONE		'1'
-#define MAXLEN  sizeof(char)
 
-void print_dec2bin(char);
+#define MAXLEN sizeof(char) * 8
 
 char bin_num[MAXLEN];
-
-int main(){
-	char n = 85;
-
-	print_dec2bin(n);
-
-	printf("The number %d in binary is: %s\n", n, bin_num);
-
-	return 0;
-}
 
 /* Function: print_dec2bin:
  * ------------------------
@@ -38,14 +29,14 @@ int main(){
  *
  */
 
-void print_dec2bin(char n)
+char *print_dec2bin(char n)
 {
 	int p;
 	char flag = 0;
 	unsigned char q;
 	char *cptr = bin_num;
 
-	p = (sizeof(n) * 8) - 1;
+	p = MAXLEN - 1;
 
 	if(n < 0){
 		n = -1*n;
@@ -68,4 +59,6 @@ void print_dec2bin(char n)
 			*cptr = ZERO;
 		*cptr = ONE;
 	}
+
+	return bin_num;
 }
